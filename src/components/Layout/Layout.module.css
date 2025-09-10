@@ -1,14 +1,37 @@
 .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
 }
 .header {
+  background-color: var(--bg-color-header);
+  border-bottom: 1px solid #f2f4f7;
+  padding: 24px 120px;
+  width: 1440px;
 }
 .nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  gap: 32px;
 }
 .logo {
+  margin-right: 960px;
+  line-height: 16px;
+  font-weight: var(--font-weight-bold);
+  font-size: 20px;
 }
 .accent {
+  color: #3470ff;
 }
 .link {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
 }
 .active {
+  color: #0b44cd;
 }
