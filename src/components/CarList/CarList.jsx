@@ -36,6 +36,7 @@ function CarList() {
         {cars.map((car) => (
           <li className={css.item} key={car.id}>
             <CarCard
+              id={car.id}
               img={car.img}
               brand={car.brand}
               model={car.model}

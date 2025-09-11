@@ -1,49 +1,54 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { handlePending, handleError } from "../../utils/reduxUtils";
-import { fetchFavourites } from "./operations.js";
+
+// Load favourites from localStorage
+const loadFavouritesFromStorage = () => {
+  try {
+    const savedFavourites = localStorage.getItem("favouriteCarIds");
+    return savedFavourites ? JSON.parse(savedFavourites) : [];
+  } catch (error) {
+    console.error("Error loading favourites from localStorage:", error);
+    return [];
+  }
+};
+
+// Save favourites to localStorage
+const saveFavouritesToStorage = (favouriteIds) => {
+  try {
+    localStorage.setItem("favouriteCarIds", JSON.stringify(favouriteIds));
+  } catch (error) {
+    console.error("Error saving favourites to localStorage:", error);
+  }
+};
 
 const favouritesSlice = createSlice({
   name: "favourites",
   initialState: {
-    cars: [],
-    page: 1,
-    totalPages: 1,
-    isLoading: false,
-    error: null,
+    favouriteCarIds: loadFavouritesFromStorage(),
   },
   reducers: {
-    // Increment page for Load More
-    loadNextPage: (state) => {
-      if (state.page < state.totalPages) {
-        state.page += 1;
-      }
-    },
-    // Reset fav list (for new search)
-    resetFavourites: (state) => {
-      state.cars = [];
-      state.page = 1;
-      state.totalPages = 1;
-      state.error = null;
-    },
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchFavourites.pending, handlePending)
-      .addCase(fetchFavourites.fulfilled, (state, action) => {
-        state.isLoading = false;
-        const { cars, page, totalPages } = action.payload;
+    toggleFavourite: (state, action) => {
+      const carId = action.payload;
+      const isFavourite = state.favouriteCarIds.includes(carId);
 
-        if (state.page === 1) {
-          state.cars = cars;
-        } else {
-          state.cars = [...state.cars, ...cars];
-        }
-        state.page = page;
-        state.totalPages = totalPages;
-      })
-      .addCase(fetchFavourites.rejected, handleError);
+      if (isFavourite) {
+        // Remove from favourites
+        state.favouriteCarIds = state.favouriteCarIds.filter(
+          (id) => id !== carId
+        );
+      } else {
+        // Add to favourites
+        state.favouriteCarIds.push(carId);
+      }
+
+      // Save to localStorage
+      saveFavouritesToStorage(state.favouriteCarIds);
+    },
+    clearAllFavourites: (state) => {
+      state.favouriteCarIds = [];
+      saveFavouritesToStorage([]);
+    },
   },
 });
 
-export const { loadNextPage, resetFavourites } = favouritesSlice.actions;
+export const { toggleFavourite, clearAllFavourites } = favouritesSlice.actions;
 export default favouritesSlice.reducer;

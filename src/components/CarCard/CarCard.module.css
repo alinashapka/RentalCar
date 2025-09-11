@@ -1,4 +1,5 @@
 .card {
+  position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -12,7 +13,24 @@
   display: block;
   margin-bottom: 16px;
 }
-.icon {
+.heartButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  z-index: 10;
+  fill: #f2f4f7;
+  cursor: pointer;
+}
+.heartIcon {
+  transition: transform 0.2s ease;
+}
+.heartIcon:hover {
+  transform: scale(1.1);
+}
+.heartButton.favorite .heartIcon {
+  fill: #3470ff;
+  color: #3470ff;
+  stroke: #3470ff;
 }
 .detailsWrapper {
   display: flex;

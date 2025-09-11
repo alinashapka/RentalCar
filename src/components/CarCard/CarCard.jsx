@@ -1,8 +1,12 @@
 import css from "./CarCard.module.css";
 import Icon from "../Icon/Icon.jsx";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleFavourite } from "../../redux/favourites/slice.js";
+import { selectIsFavourite } from "../../redux/favourites/selectors";
 
 function CarCard({
+  id,
   year,
   brand,
   model,
@@ -21,11 +25,28 @@ function CarCard({
     navigate(`/catalog/${id}`);
   };
 
+  const dispatch = useDispatch();
+  const isFavourite = useSelector(selectIsFavourite(id));
+
+  const handleFavouriteClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(toggleFavourite(id));
+  };
+
   return (
     <>
       <div className={css.card}>
         <img className={css.img} src={img} alt={model} />
-        {/* <Icon id="heart" classname={css.icon} /> */}
+        <button
+          className={`${css.heartButton} ${isFavourite ? css.favorite : ""}`}
+          onClick={handleFavouriteClick}
+          aria-label={
+            isFavourite ? "Remove from favourites" : "Add to favourites"
+          }
+        >
+          <Icon id="heart" className={css.heartIcon} size={20} />
+        </button>
         <div className={css.wrapper}>
           <div className={css.detailsWrapper}>
             <p className={css.details}>
