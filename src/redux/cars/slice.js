@@ -15,7 +15,7 @@ const carsSlice = createSlice({
     // Increment page for Load More
     loadNextPage: (state) => {
       if (state.page < state.totalPages) {
-        state.page += 1;
+        state.page = Number(state.page) + 1;
       }
     },
     // Reset cars list (for new search)
@@ -36,10 +36,14 @@ const carsSlice = createSlice({
         if (state.page === 1) {
           state.cars = cars;
         } else {
-          state.cars = [...state.cars, ...cars];
+          state.cars = [
+            ...state.cars,
+            ...cars.filter((car) => !state.cars.some((c) => c.id === car.id)),
+          ];
         }
-        state.page = page;
-        state.totalPages = totalPages;
+
+        state.page = Number(page);
+        state.totalPages = Number(totalPages);
       })
       .addCase(fetchCars.rejected, handleError);
   },
