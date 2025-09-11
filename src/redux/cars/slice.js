@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { handlePending, handleError } from "../../utils/reduxUtils";
-import { fetchCars } from "./operations.js";
+import { fetchCarById, fetchCars } from "./operations.js";
 
 const carsSlice = createSlice({
   name: "cars",
   initialState: {
     cars: [],
+    currentCar: null,
     page: 1,
     totalPages: 1,
     isLoading: false,
@@ -45,7 +46,12 @@ const carsSlice = createSlice({
         state.page = Number(page);
         state.totalPages = Number(totalPages);
       })
-      .addCase(fetchCars.rejected, handleError);
+      .addCase(fetchCars.rejected, handleError)
+      .addCase(fetchCarById.pending, handlePending)
+      .addCase(fetchCarById.fulfilled, (state, action) => {
+        state.currentCar = action.payload;
+      })
+      .addCase(fetchCarById.rejected, handleError);
   },
 });
 

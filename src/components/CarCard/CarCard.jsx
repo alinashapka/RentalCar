@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavourite } from "../../redux/favourites/slice.js";
 import { selectIsFavourite } from "../../redux/favourites/selectors";
+import { formatMileage } from "../../utils/formatMileage.js";
 
 function CarCard({
   id,
@@ -17,7 +18,7 @@ function CarCard({
   address,
   mileage,
 }) {
-  const formattedMileage = new Intl.NumberFormat("fr-FR").format(mileage);
+  const formattedMileage = formatMileage(mileage);
 
   const navigate = useNavigate();
 
@@ -45,7 +46,7 @@ function CarCard({
             isFavourite ? "Remove from favourites" : "Add to favourites"
           }
         >
-          <Icon id="heart" className={css.heartIcon} size={20} />
+          <Icon id="heart" className={css.heartIcon} size={16} />
         </button>
         <div className={css.wrapper}>
           <div className={css.detailsWrapper}>
@@ -63,7 +64,7 @@ function CarCard({
             </p>
           </div>
         </div>
-        <button className={css.button} onClick={goToDetails}>
+        <button className={css.button} onClick={() => goToDetails(id)}>
           Read More
         </button>
       </div>

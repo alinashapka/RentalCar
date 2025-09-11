@@ -1,4 +1,5 @@
 export const selectCars = (state) => state.cars.cars;
+export const selectCurrentCar = (state) => state.cars.currentCar;
 export const selectCarsPage = (state) => Number(state.cars.page) || 1;
 export const selectCarsTotalPages = (state) => state.cars.totalPages;
 export const selectCarsLoading = (state) => state.cars.isLoading;

@@ -1,10 +1,10 @@
-import RentalForm from "../../components/RentalForm/RentalForm";
+import CarDetails from "../../components/CarDetails/CarDetails.jsx";
 import css from "./DetailsPage.module.css";
 
 function DetailsPage() {
   return (
     <>
-      <RentalForm />
+      <CarDetails />
     </>
   );
 }
