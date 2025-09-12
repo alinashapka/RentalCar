@@ -3,6 +3,8 @@ import "./App.module.css";
 import { lazy, Suspense } from "react";
 import Layout from "../Layout/Layout.jsx";
 import Loader from "../Loader/Loader.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage.jsx"));
 const CatalogPage = lazy(() =>
@@ -27,6 +29,7 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
+        <ToastContainer position="top-center" autoClose={3000} />
       </Suspense>
     </>
   );

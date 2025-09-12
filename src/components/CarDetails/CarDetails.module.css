@@ -1,11 +1,14 @@
 .container {
   padding: 0 120px 104px;
+  max-width: 1440px;
   margin-top: 84px;
   display: flex;
-  flex-direction: column;
+  align-items: flex-start;
+  gap: 72px;
 }
 .imgWrapper {
   width: 640px;
+  flex-shrink: 0;
 }
 .img {
   border-radius: 19px;
@@ -14,6 +17,7 @@
   margin-bottom: 40px;
 }
 .detailsWrapper {
+  flex: 1;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -28,12 +32,19 @@
 }
 /* .accent */
 .iconWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.iconWrapper .text:last-child {
+  margin-left: 8px;
 }
 .icon {
   fill: #101828;
 }
 .text {
   font-weight: var(--font-weight-medium);
+  text-align: left;
 }
 .price {
   font-weight: var(--font-weight-semi-bold);
@@ -43,12 +54,26 @@
   margin-top: 16px;
   margin-bottom: 32px;
 }
+.listContainer {
+  display: flex;
+  flex-direction: column;
+}
+.listContainer ul {
+  margin-bottom: 110px;
+}
+.listContainer ul:last-child {
+  margin-bottom: 0;
+}
+.listContainer h4:first-child {
+  margin-top: 68px;
+}
 .subtitle {
   font-weight: var(--font-weight-semi-bold);
   font-size: 20px;
   line-height: 1.2;
   color: #101828;
   margin-bottom: 20px;
+  text-align: left;
 }
 .list {
   display: flex;
@@ -57,4 +82,8 @@
   gap: 16px;
 }
 .item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
 }

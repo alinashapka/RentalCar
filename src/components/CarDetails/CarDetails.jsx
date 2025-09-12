@@ -39,6 +39,7 @@ function CarDetails() {
         <img className={css.img} src={car.img} alt={car.model} />
         <RentalForm />
       </div>
+
       <div className={css.detailsWrapper}>
         <h3 className={css.title}>
           {car.brand} {car.model} {car.year}
@@ -46,46 +47,48 @@ function CarDetails() {
         </h3>
         <div className={css.iconWrapper}>
           <Icon id="location" className={css.icon} size={16} />
-          <p className={css.text}>
-            {car.address} Mileage: {formattedMileage} km
-          </p>
+          <p className={css.text}>{car.address}</p>
+          <p className={css.text}>Mileage: {formattedMileage} km</p>
         </div>
+
         <p className={css.price}>${car.rentalPrice}</p>
         <p className={css.text}>{car.description}</p>
 
-        <h4 className={css.subtitle}>Rental Conditions: </h4>
-        <ul className={css.list}>
-          {car.rentalConditions.map((condition, index) => (
-            <li key={index} className={css.item}>
-              <Icon id="check-circle" className={css.icon} size={16} />
-              {condition}
-            </li>
-          ))}
-        </ul>
-
-        <h4 className={css.subtitle}>Car Specifications: </h4>
-        <ul className={css.list}>
-          {specs.map((spec, idx) => (
-            <li key={idx} className={css.item}>
-              <p className={css.text}>
-                {spec.label}: {spec.value}
-              </p>
-              <Icon id={spec.icon} className={css.icon} size={16} />
-            </li>
-          ))}
-        </ul>
-
-        <h4 className={css.subtitle}>Accessories and functionalities: </h4>
-        <ul className={css.list}>
-          {[...(car.accessories || []), ...(car.functionalities || [])].map(
-            (item, index) => (
+        <div className={css.listContainer}>
+          <h4 className={css.subtitle}>Rental Conditions: </h4>
+          <ul className={css.list}>
+            {car.rentalConditions.map((condition, index) => (
               <li key={index} className={css.item}>
-                <Icon id="check" className={css.icon} size={16} />
-                {item}
+                <Icon id="check-circle" className={css.icon} size={16} />
+                {condition}
               </li>
-            )
-          )}
-        </ul>
+            ))}
+          </ul>
+
+          <h4 className={css.subtitle}>Car Specifications: </h4>
+          <ul className={css.list}>
+            {specs.map((spec, idx) => (
+              <li key={idx} className={css.item}>
+                <Icon id={spec.icon} className={css.icon} size={16} />
+                <p className={css.text}>
+                  {spec.label}: {spec.value}
+                </p>
+              </li>
+            ))}
+          </ul>
+
+          <h4 className={css.subtitle}>Accessories and functionalities: </h4>
+          <ul className={css.list}>
+            {[...(car.accessories || []), ...(car.functionalities || [])].map(
+              (item, index) => (
+                <li key={index} className={css.item}>
+                  <Icon id="check-circle" className={css.icon} size={16} />
+                  {item}
+                </li>
+              )
+            )}
+          </ul>
+        </div>
       </div>
     </div>
   );

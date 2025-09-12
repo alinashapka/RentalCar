@@ -2,12 +2,14 @@ import css from "./RentalForm.module.css";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import "react-datepicker/dist/react-datepicker.css";
+import { toast } from "react-toastify";
 
 function RentalForm() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    bookingDate: "",
+    bookingDate: null,
     comment: "",
   });
 
@@ -15,9 +17,21 @@ function RentalForm() {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const handleDateChange = (date) => {
+    setFormData((prev) => ({ ...prev, bookingDate: date }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+
+    toast.success("Car successfully booked!");
+
+    setFormData({
+      name: "",
+      email: "",
+      bookingDate: null,
+      comment: "",
+    });
   };
 
   return (
@@ -48,10 +62,10 @@ function RentalForm() {
         />
         <DatePicker
           selected={formData.bookingDate}
-          onChange={handleChange}
+          onChange={handleDateChange}
           placeholderText="Booking date"
           className={css.input}
-          dateFormat="yyyy-dd-MM"
+          dateFormat="yyyy-MM-dd"
         />
         <textarea
           className={css.textarea}
