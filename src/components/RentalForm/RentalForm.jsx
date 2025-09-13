@@ -49,7 +49,6 @@ function RentalForm() {
           value={formData.name}
           onChange={handleChange}
           required
-          autoFocus
         />
         <input
           className={css.input}

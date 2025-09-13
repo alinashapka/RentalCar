@@ -9,6 +9,11 @@ import {
   selectCarsTotalPages,
   selectCarsLoading,
 } from "../../redux/cars/selectors.js";
+import {
+  selectBrand,
+  selectPrice,
+  selectMileage,
+} from "../../redux/filters/selectors";
 
 function CarList() {
   const dispatch = useDispatch();
@@ -17,13 +22,15 @@ function CarList() {
   const totalPages = useSelector(selectCarsTotalPages);
   const isLoading = useSelector(selectCarsLoading);
   const fetchedPages = useRef(new Set());
+  const brand = useSelector(selectBrand);
+  const rentalPrice = useSelector(selectPrice);
+  const mileage = useSelector(selectMileage);
 
   useEffect(() => {
-    if (!fetchedPages.current.has(page)) {
-      dispatch(fetchCars());
-      fetchedPages.current.add(page);
-    }
-  }, [dispatch, page]);
+    fetchedPages.current.clear();
+    dispatch(fetchCars());
+    fetchedPages.current.add(page);
+  }, [dispatch, page, brand, rentalPrice, mileage]);
 
   const handleLoadMore = () => {
     if (page < totalPages && !isLoading) {

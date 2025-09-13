@@ -46,7 +46,11 @@ function CarCard({
             isFavourite ? "Remove from favourites" : "Add to favourites"
           }
         >
-          <Icon id="heart" className={css.heartIcon} size={16} />
+          {isFavourite ? (
+            <Icon id="heart-active" className={css.heartIconActive} size={16} />
+          ) : (
+            <Icon id="heart" className={css.heartIcon} size={16} />
+          )}
         </button>
         <div className={css.wrapper}>
           <div className={css.detailsWrapper}>

@@ -1,29 +1,44 @@
 import { createSlice } from "@reduxjs/toolkit";
-
-const initialState = {
-  brand: "",
-  mileage: "",
-  price: "",
-};
+import { handlePending, handleError } from "../../utils/reduxUtils";
+import { fetchBrands } from "./operations";
 
 const filtersSlice = createSlice({
   name: "filters",
-  initialState,
+  initialState: {
+    brand: null,
+    rentalPrice: null,
+    mileage: {
+      from: null,
+      to: null,
+    },
+    brands: [],
+    isLoading: false,
+    error: null,
+  },
   reducers: {
     setBrand: (state, action) => {
-      state.brand = action.payload.brand;
-    },
-    setMileage: (state, action) => {
-      state.mileage = action.payload.mileage;
+      state.brand = action.payload;
     },
     setPrice: (state, action) => {
-      state.price = action.payload.price;
+      state.rentalPrice = action.payload;
+    },
+    setMileage: (state, action) => {
+      state.mileage = action.payload;
     },
     resetFilters: (state) => {
-      state.brand = "";
-      state.mileage = "";
-      state.price = "";
+      state.brand = null;
+      state.rentalPrice = null;
+      state.mileage = { from: null, to: null };
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchBrands.pending, handlePending)
+      .addCase(fetchBrands.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.brands = action.payload;
+      })
+      .addCase(fetchBrands.rejected, handleError);
   },
 });
 
