@@ -13,6 +13,7 @@ import {
   selectFiltersLoading,
 } from "../../redux/filters/selectors";
 import { fetchBrands } from "../../redux/filters/operations.js";
+import { resetCars } from "../../redux/cars/slice.js";
 
 function CarFilters() {
   const dispatch = useDispatch();
@@ -22,6 +23,8 @@ function CarFilters() {
   const rentalPrice = useSelector(selectPrice);
   const mileage = useSelector(selectMileage);
 
+  const [localBrand, setLocalBrand] = useState(brand);
+  const [localPrice, setLocalPrice] = useState(rentalPrice);
   const [mileageFrom, setMileageFrom] = useState(mileage.from || "");
   const [mileageTo, setMileageTo] = useState(mileage.to || "");
 
@@ -39,33 +42,39 @@ function CarFilters() {
   }, [dispatch]);
 
   const handleBrandChange = (selectedOption) => {
-    dispatch(setBrand(selectedOption ? selectedOption.value : null));
+    setLocalBrand(selectedOption ? selectedOption.value : null);
   };
 
   const handlePriceChange = (selectedOption) => {
-    dispatch(setPrice(selectedOption ? selectedOption.value : null));
+    setLocalPrice(selectedOption ? selectedOption.value : null);
   };
 
   const handleMileageFromChange = (e) => {
     const value = e.target.value;
     setMileageFrom(value);
-    dispatch(
-      setMileage({
-        from: value ? Number(value) : null,
-        to: mileageTo ? Number(mileageTo) : null,
-      })
-    );
   };
 
   const handleMileageToChange = (e) => {
     const value = e.target.value;
     setMileageTo(value);
+  };
+
+  const handleSearch = () => {
+    dispatch(resetCars());
+
+    dispatch(setBrand(localBrand));
+    dispatch(setPrice(localPrice));
     dispatch(
       setMileage({
         from: mileageFrom ? Number(mileageFrom) : null,
-        to: value ? Number(value) : null,
+        to: mileageTo ? Number(mileageTo) : null,
       })
     );
+
+    setLocalBrand(null);
+    setLocalPrice(null);
+    setMileageFrom("");
+    setMileageTo("");
   };
 
   const DropdownIndicator = (props) => {
@@ -87,12 +96,14 @@ function CarFilters() {
   };
 
   const selectedBrand =
-    brands.length > 0 && brand ? { value: brand, label: brand } : null;
+    brands.length > 0 && localBrand
+      ? { value: localBrand, label: localBrand }
+      : null;
 
-  const selectedPrice = rentalPrice
+  const selectedPrice = localPrice
     ? {
-        value: rentalPrice,
-        label: `To $${rentalPrice}`,
+        value: localPrice,
+        label: `To $${localPrice}`,
       }
     : null;
 
@@ -170,7 +181,7 @@ function CarFilters() {
         </div>
       </div>
 
-      <button className={css.button} type="button">
+      <button className={css.button} type="button" onClick={handleSearch}>
         Search
       </button>
     </div>
