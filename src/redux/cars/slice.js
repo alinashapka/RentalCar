@@ -13,13 +13,12 @@ const carsSlice = createSlice({
     error: null,
   },
   reducers: {
-    // Increment page for Load More
     loadNextPage: (state) => {
       if (state.page < state.totalPages) {
         state.page = Number(state.page) + 1;
       }
     },
-    // Reset cars list (for new search)
+
     resetCars: (state) => {
       state.cars = [];
       state.page = 1;

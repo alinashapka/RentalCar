@@ -4,11 +4,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   max-width: 276px;
-  max-height: 424px;
+  height: 424px;
 }
 .img {
+  width: 276px;
+  height: 268px;
   border-radius: 14px;
   object-fit: cover;
   display: block;
@@ -31,12 +32,19 @@
 .heartIconActive {
   fill: #3470ff;
 }
+.wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 .detailsWrapper {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
 }
 .details {
+  text-align: left;
   margin-bottom: 8px;
   font-weight: var(--font-weight-medium);
   color: #101828;

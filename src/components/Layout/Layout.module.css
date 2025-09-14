@@ -23,7 +23,7 @@
 .logo {
   margin-right: 960px;
   line-height: 16px;
-  font-weight: var(--font-weight-bold);
+  font-weight: 1000;
   font-size: 20px;
 }
 .accent {

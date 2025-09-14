@@ -11,11 +11,10 @@ function Layout() {
     <div className={css.container}>
       <header className={css.header}>
         <nav className={css.nav}>
-          {/* Logo */}
           <NavLink to="/" className={css.logo}>
             Rental<span className={css.accent}>Car</span>
           </NavLink>
-          {/* NavList */}
+
           <NavLink to="/" className={buildLinkClass}>
             Home
           </NavLink>

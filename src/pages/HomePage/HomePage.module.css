@@ -1,6 +1,6 @@
 .container {
   margin-top: 4px;
-  width: 100%;
+  max-width: 1440px;
   height: 100%;
   background-image: url("/src/images/bg.jpg");
   background-size: cover;

@@ -43,7 +43,6 @@ function CarDetails() {
       <div className={css.detailsWrapper}>
         <h3 className={css.title}>
           {car.brand} {car.model} {car.year}
-          {/* <span className={css.accent}>Id: {car.id}</span> */}
         </h3>
         <div className={css.iconWrapper}>
           <Icon id="location" className={css.icon} size={16} />

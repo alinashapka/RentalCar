@@ -1,5 +1,6 @@
 import css from "./CarList.module.css";
 import CarCard from "../CarCard/CarCard";
+import Loader from "../Loader/Loader.jsx";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars } from "../../redux/cars/operations.js";
@@ -37,6 +38,15 @@ function CarList() {
       dispatch({ type: "cars/loadNextPage" });
     }
   };
+
+  if (isLoading && cars.length === 0) {
+    return (
+      <div className={css.container}>
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <div className={css.container}>
       <ul className={css.list}>
@@ -58,7 +68,13 @@ function CarList() {
         ))}
       </ul>
 
-      {cars.length > 0 && page < totalPages && (
+      {isLoading && cars.length > 0 && (
+        <div className={css.loadMoreLoader}>
+          <Loader />
+        </div>
+      )}
+
+      {!isLoading && cars.length > 0 && page < totalPages && (
         <button className={css.button} onClick={handleLoadMore}>
           Load More
         </button>

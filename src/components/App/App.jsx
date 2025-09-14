@@ -29,7 +29,11 @@ function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
-        <ToastContainer position="top-center" autoClose={3000} />
+        <ToastContainer
+          position="top-center"
+          autoClose={3000}
+          style={{ zIndex: 10001 }}
+        />
       </Suspense>
     </>
   );

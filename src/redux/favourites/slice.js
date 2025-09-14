@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Load favourites from localStorage
 const loadFavouritesFromStorage = () => {
   try {
     const savedFavourites = localStorage.getItem("favouriteCarIds");
@@ -11,7 +10,6 @@ const loadFavouritesFromStorage = () => {
   }
 };
 
-// Save favourites to localStorage
 const saveFavouritesToStorage = (favouriteIds) => {
   try {
     localStorage.setItem("favouriteCarIds", JSON.stringify(favouriteIds));
@@ -31,16 +29,13 @@ const favouritesSlice = createSlice({
       const isFavourite = state.favouriteCarIds.includes(carId);
 
       if (isFavourite) {
-        // Remove from favourites
         state.favouriteCarIds = state.favouriteCarIds.filter(
           (id) => id !== carId
         );
       } else {
-        // Add to favourites
         state.favouriteCarIds.push(carId);
       }
 
-      // Save to localStorage
       saveFavouritesToStorage(state.favouriteCarIds);
     },
     clearAllFavourites: (state) => {
