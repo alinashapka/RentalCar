@@ -1,4 +1,5 @@
 import css from "./RentalForm.module.css";
+import Button from "../Button/Button.jsx";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -74,9 +75,9 @@ function RentalForm() {
           onChange={handleChange}
         />
 
-        <button className={css.button} type="submit">
+        <Button className={css.sendBtn} type="submit">
           Send
-        </button>
+        </Button>
       </form>
     </div>
   );

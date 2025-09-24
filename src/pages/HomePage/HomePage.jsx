@@ -1,5 +1,6 @@
 import css from "./HomePage.module.css";
 import { useNavigate } from "react-router-dom";
+import Button from "../../components/Button/Button.jsx";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -14,9 +15,9 @@ function HomePage() {
       <h2 className={css.text}>
         Reliable and budget-friendly rentals for any journey
       </h2>
-      <button className={css.button} onClick={goToCatalog}>
+      <Button className={css.viewBtn} onClick={goToCatalog}>
         View Catalog
-      </button>
+      </Button>
     </div>
   );
 }

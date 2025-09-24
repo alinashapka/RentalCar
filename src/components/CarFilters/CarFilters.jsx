@@ -1,6 +1,7 @@
 import css from "./CarFilters.module.css";
 import { styles } from "./CarFiltersStyles.js";
 import Icon from "../Icon/Icon.jsx";
+import Button from "../Button/Button.jsx";
 import Select, { components } from "react-select";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -181,9 +182,7 @@ function CarFilters() {
         </div>
       </div>
 
-      <button className={css.button} type="button" onClick={handleSearch}>
-        Search
-      </button>
+      <Button onClick={handleSearch}>Search</Button>
     </div>
   );
 }

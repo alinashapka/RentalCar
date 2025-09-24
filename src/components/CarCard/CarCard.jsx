@@ -1,5 +1,6 @@
 import css from "./CarCard.module.css";
 import Icon from "../Icon/Icon.jsx";
+import Button from "../Button/Button.jsx";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleFavourite } from "../../redux/favourites/slice.js";
@@ -68,9 +69,9 @@ function CarCard({
             </p>
           </div>
         </div>
-        <button className={css.button} onClick={() => goToDetails(id)}>
+        <Button className={css.readMoreBtn} onClick={() => goToDetails(id)}>
           Read More
-        </button>
+        </Button>
       </div>
     </>
   );

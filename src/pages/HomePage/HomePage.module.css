@@ -31,7 +31,7 @@
   color: var(--color-primary);
   margin-bottom: 40px;
 }
-.button {
+.viewBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -47,6 +47,6 @@
   margin-bottom: 60px;
   transition: background-color 300ms ease;
 }
-.button:hover {
+.viewBtn:hover {
   background-color: #0b44cd;
 }

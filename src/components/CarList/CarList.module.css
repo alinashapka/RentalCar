@@ -18,7 +18,7 @@
 .item {
   flex-basis: calc((100% - 32px * 3) / 4);
 }
-.button {
+.loadMoreBtn {
   margin-top: 80px;
   display: flex;
   align-items: center;
@@ -31,6 +31,6 @@
   font-weight: var(--font-weight-semi-bold);
   transition: border 300ms ease;
 }
-.button:hover {
+.loadMoreBtn:hover {
   border: 1px solid #0b44cd;
 }

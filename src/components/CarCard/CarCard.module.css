@@ -71,7 +71,7 @@
   line-height: 1.33;
   color: #8d929a;
 }
-.button {
+.readMoreBtn {
   width: 276px;
   display: flex;
   align-items: center;
@@ -85,6 +85,6 @@
   transition: background-color 300ms ease;
   margin-top: 28px;
 }
-.button:hover {
+.readMoreBtn:hover {
   background-color: #0b44cd;
 }

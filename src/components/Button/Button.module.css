@@ -1,0 +1,16 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  border-radius: 12px;
+  padding: 12px 51px;
+  height: 44px;
+  background-color: var(--bg-color-btn);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semi-bold);
+  transition: background-color 300ms ease;
+}
+.button:hover {
+  background-color: #0b44cd;
+}

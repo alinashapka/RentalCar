@@ -1,6 +1,7 @@
 import css from "./CarList.module.css";
 import CarCard from "../CarCard/CarCard";
 import Loader from "../Loader/Loader.jsx";
+import Button from "../Button/Button.jsx";
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars } from "../../redux/cars/operations.js";
@@ -75,9 +76,9 @@ function CarList() {
       )}
 
       {!isLoading && cars.length > 0 && page < totalPages && (
-        <button className={css.button} onClick={handleLoadMore}>
+        <Button className={css.loadMoreBtn} onClick={handleLoadMore}>
           Load More
-        </button>
+        </Button>
       )}
     </div>
   );
