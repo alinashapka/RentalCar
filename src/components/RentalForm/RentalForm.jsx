@@ -14,6 +14,8 @@ function RentalForm() {
     comment: "",
   });
 
+  const today = new Date();
+
   const handleChange = (e) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
@@ -66,6 +68,7 @@ function RentalForm() {
           placeholderText="Booking date"
           className={css.input}
           dateFormat="yyyy-MM-dd"
+          minDate={today}
         />
         <textarea
           className={css.textarea}
